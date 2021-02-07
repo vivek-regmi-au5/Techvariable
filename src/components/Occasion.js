@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -33,12 +33,14 @@ const OccasionFilter = () => {
   const { birthday, marriage, christmas } = state;
   const error = [birthday, marriage, christmas].filter((v) => v).length !== 2;
   const classes = useStyles();
+  const [expand, setExpand] = useState(true);
   return (
-    <Accordion>
+    <Accordion expanded={expand}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
+        onClick={() => setExpand((prev) => !prev)}
       >
         <Typography className={classes.heading}>Occasion</Typography>
       </AccordionSummary>
@@ -54,7 +56,7 @@ const OccasionFilter = () => {
                     name="birthday"
                   />
                 }
-                label="birthday"
+                label="Birthday"
               />
               <FormControlLabel
                 control={
@@ -64,7 +66,7 @@ const OccasionFilter = () => {
                     name="marriage"
                   />
                 }
-                label="marriage"
+                label="Marriage"
               />
               <FormControlLabel
                 control={
@@ -74,7 +76,7 @@ const OccasionFilter = () => {
                     name="christmas"
                   />
                 }
-                label="christmas"
+                label="Christmas"
               />
             </FormGroup>
           </FormControl>

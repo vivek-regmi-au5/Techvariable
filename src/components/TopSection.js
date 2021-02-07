@@ -9,46 +9,12 @@ import Rolls from "../images/rolls.jpg";
 import Salmon from "../images/salmon.jpg";
 import Sandwich from "../images/sandwich.jpeg";
 import Spegeti from "../images/spegetti.jpg";
-import Carousel from "react-elastic-carousel";
-import { makeStyles } from "@material-ui/core/styles";
 import { Container } from "@material-ui/core";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
-const useStyles = makeStyles({
-  media: {
-    height: 240,
-  },
-  custom: {
-    iLquPE: {
-      boxSizing: "border-box",
-      WebkitTransition: "all 0.3s ease",
-      transition: "all 0.3s ease",
-      fontSize: "1.6em",
-      backgroundColor: "rgba(103,58,183,0.1)",
-      color: "#999",
-      boxShadow: "0 0 2px 0px #333",
-      borderRadius: "50%",
-      border: "none",
-      padding: "0",
-      width: "50px",
-      height: "50px",
-      minWidth: "50px",
-      lineHeight: "50px",
-      WebkitAlignSelf: "center",
-      MsFlexItemAlign: "center",
-      alignSelf: "center",
-      cursor: "pointer",
-      outline: "none",
-    },
-  },
-
-  "slick-arrow": {
-    backgroundColor: "red",
-  },
-});
+import Typography from "@material-ui/core/Typography";
 
 const TopSection = () => {
   const xsmall = useMediaQuery("(min-width:1px)");
@@ -84,13 +50,6 @@ const TopSection = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
   };
-  const classes = useStyles();
-  const breakPoints = [
-    { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 820, itemsToShow: 3 },
-    { width: 1160, itemsToShow: 4 },
-  ];
 
   const freqOrderData = [
     {
@@ -142,7 +101,14 @@ const TopSection = () => {
 
   return (
     <Container>
-      <h1>Most frequently ordered</h1>
+      <Typography
+        gutterBottom
+        variant="p"
+        component="h2"
+        style={{ paddingTop: "1rem", paddingBottom: "1.5rem" }}
+      >
+        Most frequently ordered
+      </Typography>
       {xsmall && small && medium && large ? (
         <Slider {...settingsLarge}>
           {freqOrderData.map((item) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
@@ -10,7 +10,7 @@ import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
-const FormatFIlter = () => {
+const FormatFIlter = ({ format, setFormat }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: "100%",
@@ -20,25 +20,25 @@ const FormatFIlter = () => {
       fontWeight: theme.typography.fontWeightRegular,
     },
   }));
-  const [state, setState] = React.useState({
-    lunchbox: false,
-    takeaway: false,
-    dine: false,
-  });
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    setFormat({
+      ...format,
+      [event.target.name]: event.target.checked,
+    });
   };
 
-  const { lunchbox, takeaway, dine } = state;
-  const error = [lunchbox, takeaway, dine].filter((v) => v).length !== 2;
+  const { lunchbox, takeaway, dine } = format;
+  const [expand, setExpand] = useState(true);
+
   const classes = useStyles();
   return (
-    <Accordion>
+    <Accordion expanded={expand}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
+        onClick={() => setExpand((prev) => !prev)}
       >
         <Typography className={classes.heading}>Format</Typography>
       </AccordionSummary>
@@ -54,7 +54,7 @@ const FormatFIlter = () => {
                     name="lunchbox"
                   />
                 }
-                label="lunchbox"
+                label="Lunchbox"
               />
               <FormControlLabel
                 control={
@@ -64,7 +64,7 @@ const FormatFIlter = () => {
                     name="takeaway"
                   />
                 }
-                label="takeaway"
+                label="Takeaway"
               />
               <FormControlLabel
                 control={
@@ -74,13 +74,12 @@ const FormatFIlter = () => {
                     name="dine"
                   />
                 }
-                label="dine"
+                label="Dine"
               />
             </FormGroup>
           </FormControl>
           <FormControl
             required
-            error={error}
             component="fieldset"
             className={classes.formControl}
           ></FormControl>

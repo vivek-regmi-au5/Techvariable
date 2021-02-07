@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
@@ -41,15 +41,19 @@ function valuetext(value) {
 
 export default function FilterRange() {
   const classes = useStyles();
+  const [expand, setExpand] = useState(true);
 
   return (
-    <Accordion>
+    <Accordion expanded={expand}>
       <AccordionSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
         id="panel1a-header"
+        onClick={() => setExpand((prev) => !prev)}
       >
-        <Typography className={classes.heading}>Price $500 to $2000</Typography>
+        <Typography className={classes.heading}>
+          Price &#8377;500 to &#8377;2000
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>

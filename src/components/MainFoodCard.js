@@ -78,12 +78,37 @@ export default function MainFoodCard({ desc }) {
           <CardContent>
             <Grid container spacing={3}>
               <Grid item xs>
-                <Typography gutterBottom variant="p" component="h3">
-                  {desc.title}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Rs. {desc.price}/- head &#8729; 10 dishes
-                </Typography>
+                <Grid container>
+                  <Grid item>
+                    {" "}
+                    <Typography gutterBottom variant="p" component="h3">
+                      {desc.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      <span style={{ color: "rgb(245, 142, 46)" }}>
+                        &#8377;{desc.price}/-
+                      </span>{" "}
+                      head &#8729; 10 dishes
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        color: "rgb(243, 52, 90)",
+                      }}
+                    >
+                      <Typography variant={"caption"}>
+                        {desc.type.toUpperCase()}
+                      </Typography>
+                    </div>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
             <Grid container spacing={10} alignItems="center">

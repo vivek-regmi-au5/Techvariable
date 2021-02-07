@@ -1,7 +1,7 @@
 import React from "react";
 import ChipList from "./Chip";
 import SortBy from "./SortBy";
-import { Container, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 const MainBody = () => {
   return (

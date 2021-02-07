@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -23,13 +23,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SortBy() {
+export default function SortBy({ sortBy, setsortBy }) {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
+  const [sort, setsort] = useState();
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    console.log("prop sortBy: ", sortBy);
+    setsort(event.target.value);
+    setsortBy(event.target.value);
   };
+  useEffect(() => {
+    setsort(sortBy);
+  }, [sortBy]);
 
   return (
     <div className={classes.sortBy}>
@@ -41,7 +46,7 @@ export default function SortBy() {
           id="demo-simple-select-outlined"
           select
           className={classes.textField}
-          value={age}
+          value={sort}
           onChange={handleChange}
           InputLabelProps={{ shrink: false }}
           SelectProps={{
